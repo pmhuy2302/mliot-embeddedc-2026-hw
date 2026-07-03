@@ -9,9 +9,10 @@ typedef union {
     uint16_t raw_value;
     struct {
         // HỌC VIÊN BẮT ĐẦU VIẾT CODE TỪ ĐÂY
-
-
-
+        uint16_t PWR_ON: 1;
+        uint16_t ASSIST_LEVEL: 2;
+        uint16_t LIGHT_BRIGHT: 4;
+        uint16_t RESERVED: 9;
 
         // HỌC VIÊN KẾT THÚC VIẾT CODE
     } fields;
@@ -31,9 +32,11 @@ void drive_sport(void) {
 }
 
 // HỌC VIÊN BẮT ĐẦU VIẾT CODE TỪ ĐÂY
-
-
-
+void (*drive_modes[])(void) = {
+    drive_eco,
+    drive_normal,
+    drive_sport
+};
 
 // HỌC VIÊN KẾT THÚC VIẾT CODE
 
@@ -79,15 +82,16 @@ int main() {
     // 1. Test Task 1
     my_bike.raw_value = 0x0025; 
     printf("REGISTER STRUCTURE: \n");
-    printf("PWR_ON: %d | ASSIST_LEVEL: %d | LIGHT_BRIGHT: %d\n\n", 
+    printf("PWR_ON: %d | ASSIST_LEVEL: %d  LIGHT_BRIGHT: %d\n\n", 
            my_bike.fields.PWR_ON, my_bike.fields.ASSIST_LEVEL, my_bike.fields.LIGHT_BRIGHT);
 
     // 2. Test Task 2
     printf("ENGINE CONTROLLING: \n");
     // HỌC VIÊN BẮT ĐẦU VIẾT CODE TỪ ĐÂY
+    uint8_t max_modes = sizeof(drive_modes) / sizeof(drive_modes[0]);
 
-
-
+    if (my_bike.fields.ASSIST_LEVEL < max_modes) drive_modes[my_bike.fields.ASSIST_LEVEL]();
+    else printf("Invalid Mode!\n");
 
     // HỌC VIÊN KẾT THÚC VIẾT CODE
 
