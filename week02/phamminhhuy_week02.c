@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-// TASK 1: STRUCT, UNION & BIT-FIELDS
+// TASK 1: STRUCT, UNION & BIT-FIELDS 
 
 typedef union {
     uint16_t raw_value;
@@ -47,7 +47,9 @@ void Battery_Monitor(void (*overheat_cb)(void)) {
     int battery_temp = 45; 
     
     // HỌC VIÊN BẮT ĐẦU VIẾT CODE TỪ ĐÂY
-
+    if (battery_temp > 40) {
+        if (overheat_cb != NULL) overheat_cb();
+    }
 
 
 
@@ -66,10 +68,8 @@ uint32_t total_odometer = 0;
 
 void crash_simulation(void) {
     // HỌC VIÊN BẮT ĐẦU VIẾT CODE TỪ ĐÂY
-
-
-
-
+    crash_simulation();
+    
     // HỌC VIÊN KẾT THÚC VIẾT CODE
 }
 
@@ -107,7 +107,7 @@ int main() {
     printf("current_speed (RAM/Stack):  %p\n", (void*)&current_speed);
 
     // Bỏ comment dòng dưới để chạy thử bài Crash Lab
-    // crash_simulation();
+    crash_simulation();
 
     return 0;
 }
