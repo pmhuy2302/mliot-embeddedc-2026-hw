@@ -1,0 +1,45 @@
+#Task 1:
+1.1.
+- CMake (Trình tạo cấu hình build): Đọc cấu trúc dự án thông qua file CMakeLists.txt để tự động tạo ra file cấu hình build cho Ninja.
+   + Input: file CMakeLists.txt
+   + Output: file build.ninja
+- Ninja (Trình thực thi build): Nhận file cấu hình từ CMake, quản lý quy trình build tăng dần (incremental build) để tối ưu hóa tốc độ biên dịch và trực tiếp gọi Compiler.
+   + Input: build.ninja
+   + Output: Các lệnh thực thi biên dịch.
+- Compiler (arm-none-eabi-gcc): là trình biên dịch, biên dịch và chuyển đổi toàn bộ mã nguồn C/C++ (file .c, .h) thành mã máy (assembly hoặc nhị phân) tương thích với cấu trúc tập lệnh của vi điều khiển ARM Cortex-M (chip STM32)
+   + Input: Các file mã nguồn (.c, .h).
+   + Output: Các file thực thi (.bin, .hex, .elf).
+- STM32_Programmer_CLI (Công cụ nạp firmware): Sử dụng CLI với mạch nạp để xóa, nạp, và kiểm tra file thực thi đã biên dịch vào bộ nhớ flash của STM32.
+
+1.2.
+[CMakeLists.txt] ---> [CMake tạo file cấu hình build] ---> [build.ninja] ---> [Ninja dựa vào file build.ninja và Compiler dựa vào file .c để tạo ra file .bin/.hex/.elf] ---> [STM32_Programmer_CLI nạp firmware xuống phần cứng]
+
+#Task 2:
+2.1. 
+- Các file .o đều có địa chỉ bắt đầu từ 0 nên nếu nạp thằng các file .o này xuống chip thì nó sẽ bị đè lên nhau dẫn đến sai nghiêm trọng. Khi đó Linker sẽ phân bổ các file .o vào các địa chỉ trên chip. Và vì số lượng của file .o rất nhiều nên Linker sẽ gom nó thành 1 file duy nhất trước khi nạp xuống chip cho tối ưu và dễ quản lý.
+- File .o đơn lẻ là file mã máy thô, chứa các liên kết hở và chưa có định vị địa chỉ thực tế. Còn file .bin là file mã máy thuần túy chỉ có 0 và 1 để có thể nạp xuống chip.
+2.2 
+- Tính năng Incremental Build của ninja có vai trò giúp cho mỗi lần build lại thì những thứ không thay đổi so với lần compile trước sẽ được giữ nguyên, chỉ compile lại những phần bị thay đổi giúp tối ưu thời gian compile.
+- Ninja nhận biết file nào đã bị chỉnh sửa còn file nào không bị chỉnh sửa bằng cách dựa vào Modification Time (so sánh thời gian chỉnh sửa file .c), ninja_deps (so sánh các mốc thời gian của file .h), và ninja_log (so sánh cờ biên dịch).
+
+#Task 3:
+3.1 
+- VMA (Virtual Memory Address - Địa chỉ chạy): Là địa chỉ bộ nhớ mà CPU sẽ liên tục trỏ tới để đọc hoặc ghi dữ liệu trong suốt quá trình runtime.
+   .data : { _sdata = .; *(.data*) _edata = .; } >RAM AT> FLASH
+- LMA (Load Memory Address - Địa chỉ nạp): Là địa chỉ thực tế nơi dữ liệu phân vùng được lưu trữ vật lý khi nạp chương trình xuống chip.
+   _sidata = LOADADDR(.data);
+- Phân vùng .data bắt buộc phải có 2 loại địa chỉ này là bởi vì:
+   + Bộ nhớ RAM là Volatile cho nên sẽ bị xóa sạch khi mất điện, RAM có tốc độ đọc và ghi cực nhanh, cho phép CPU thay đổi dữ liệu liên tục khi chạy
+   + Bộ nhớ Flash là non-volatile nên sẽ giữ nguyên dữ liệu khi tắt nguồn, nhưng Flash chỉ có thể đọc (read-only)
+   -> Vì vậy .data phải có cả 2 loại địa chỉ để lữu giữ giá trị (LMA) và ghi đè giá trị trong lúc chạy chương trình (VMA).
+- Nếu Reset_Handler quên nhiệm vụ sao chép dữ liệu từ _sidata đến _sdata thì:
+   + Các biến cục bộ sẽ mang giá trị rác hoặc bằng 0.
+   + Chương trình sẽ hoạt động sai logic hoặc bị crash.
+
+#Task 4:
+4.1.
+cmake -G Ninja -B build -S .
+4.2.
+ninja -C build
+
+
