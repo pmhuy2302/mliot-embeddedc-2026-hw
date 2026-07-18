@@ -1,0 +1,26 @@
+#Task 1:
+1.1.
+- Khi logic ở mức 1 (3.3V):
+    + Output control áp một điện áp thấp (0V) vào PMOS và NMOS.
+    + PMOS đóng (ON), NMOS ngắt (OFF).
+    -> Dòng điện từ VDD chạy qua PMOS ra thẳng chân I/O -> Push.
+- Khi logic ở mức 0 (0V):
+    + Output control áp một điện áp cao (3.3V) vào PMOS và NMOS.
+    + PMOS ngắt (OFF), PMOS đóng (ON).
+    -> Dòng điện từ chân I/O chạy qua NMOS nối thẳng xuống GND -> Pull.
+
+1.2.
+- Cần dùng Input Pull-up khi kết nối với các thiết bị đầu vào tích cực mức thấp (active low).
+- Khi chưa nhấn nút (hở), điện trở Pull-up bên trong sẽ kéo điện áp của chân lên mức cao (3.3V/logic 1).
+    -> ngăn ngừa việc đọc sai.
+- Khi chân ở trạng thái floating và không kết nối vào đâu: Chân GPIO rơi vào trạng thái High-Impednace
+    -> Rất nhạy với các nguồn nhiễu điện xung quanh.
+    -> Giá trị điện áp sẽ ngẫu nhiên giữa 0V và 3.3V
+
+#Task 2:
+- Nhà sản xuất chip (ST) mặc định tắt toàn bộ clock của ngoại vi khi vừa reset chip với lí do là tối ưu hóa năng lượng tiêu thụ. Nếu clock của toàn bộ ngoại vi hoạt động, hàng ngàn flip-flop và công logic bên trong các khối này sẽ chuyển mạch liên tục theo tần số bus.
+    -> Làm nóng phần cứng và mất năng lượng vô ích khi không xài tới.
+- nếu cấu hình các thanh ghi chức năng của GPIO mà quên bật Clock cho Port đó:
+    + Các flip-flop trong thanh ghi không thể dịch hay chốt dữ liệu từ bus vào.
+    + Mọi lệnh write bằng phần mềm vào thanh ghi của port đó sẽ bị bỏ qua -> Giá trị thanh ghi đó sẽ giữ nguyên.
+    -> Code vẫn chạy nhưng phần cứng không có phản hồi.
