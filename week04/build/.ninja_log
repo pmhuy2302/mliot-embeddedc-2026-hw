@@ -1,0 +1,4 @@
+# ninja log v5
+0	55	1784543042628005064	CMakeFiles/task3_ledtoggle.dir/task3.c.o	71d02b78b33f0745
+1	62	1784543042635005060	CMakeFiles/task3_ledtoggle.dir/stm32f1xx_hal.c.o	4ca2023afc16acb7
+1	76	1784543042650005050	CMakeFiles/task3_ledtoggle.dir/stm32f1xx_hal_gpio.c.o	9448f8707dc96b19

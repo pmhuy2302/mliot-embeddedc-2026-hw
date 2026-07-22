@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/build",
+  "command": "/usr/bin/gcc -DSTM32F103xB -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/STM32F1xx_HAL_Driver/Inc\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/CMSIS/Device/ST/STM32F1xx/Include\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/CMSIS/Include\" -g -o CMakeFiles/task3_ledtoggle.dir/task3.c.o -c \"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/task3.c\"",
+  "file": "/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/task3.c",
+  "output": "CMakeFiles/task3_ledtoggle.dir/task3.c.o"
+},
+{
+  "directory": "/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/build",
+  "command": "/usr/bin/gcc -DSTM32F103xB -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/STM32F1xx_HAL_Driver/Inc\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/CMSIS/Device/ST/STM32F1xx/Include\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/CMSIS/Include\" -g -o CMakeFiles/task3_ledtoggle.dir/stm32f1xx_hal.c.o -c \"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/stm32f1xx_hal.c\"",
+  "file": "/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/stm32f1xx_hal.c",
+  "output": "CMakeFiles/task3_ledtoggle.dir/stm32f1xx_hal.c.o"
+},
+{
+  "directory": "/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/build",
+  "command": "/usr/bin/gcc -DSTM32F103xB -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/STM32F1xx_HAL_Driver/Inc\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/CMSIS/Device/ST/STM32F1xx/Include\" -I\"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/Drivers/CMSIS/Include\" -g -o CMakeFiles/task3_ledtoggle.dir/stm32f1xx_hal_gpio.c.o -c \"/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/stm32f1xx_hal_gpio.c\"",
+  "file": "/home/pmhuy/Documents/Embedded C - ML_IoT/mliot-embeddedc-2026-hw/week04/stm32f1xx_hal_gpio.c",
+  "output": "CMakeFiles/task3_ledtoggle.dir/stm32f1xx_hal_gpio.c.o"
+}
+]

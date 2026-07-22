@@ -24,3 +24,7 @@
     + Các flip-flop trong thanh ghi không thể dịch hay chốt dữ liệu từ bus vào.
     + Mọi lệnh write bằng phần mềm vào thanh ghi của port đó sẽ bị bỏ qua -> Giá trị thanh ghi đó sẽ giữ nguyên.
     -> Code vẫn chạy nhưng phần cứng không có phản hồi.
+
+#Task 5:
+- Dùng cách 2 - Điều khiển qua Firmware
+- Link video: https://drive.google.com/file/d/1xjtVYE8NGY8LwNorsEasuvmG2inHRWbN/view?usp=sharing
