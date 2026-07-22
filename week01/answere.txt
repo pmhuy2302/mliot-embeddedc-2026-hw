@@ -1,0 +1,16 @@
+# Task 4.1
+Dựa vào cách khai báo của ba biến BIKE_MODEL, total_odometer, và current_speed, em sắp xếp như
+sau:
+• BIKE_MODEL nằm trong vùng nhớ .rodata vì đây là hằng số chỉ đọc.
+• total_odometer nằm trong vùng nhớ .bss vì đây là biến toàn cục được khởi tạo giá trị bằng 0.
+• current_speed nằm trong vùng nhớ Stack vì đây là biến cục bộ được khởi tạo trong hàm main().
+# Task 4.2
+Khi kích hoạt hàm crash_simulation trên máy tính, chương trình sẽ chạy liên tục mà không thể
+terminate cho đến khi tràn stack. Theo thông tin em tự tìm hiểu được, khi chạy trên vi điều khiển thực
+tế, CPU sẽ nhảy vào hàm ngắt HardFault_Handler để xử lý sự cố. Lúc này CPU sẽ chạy một vòng lặp
+vô tận.
+# Task 5
+Cách khai báo số 1 sẽ tối ưu và không làm ảnh hưởng đến Flash. Vì cách 1 khởi tạo một mảng 0, mảng
+này sẽ được SRAM lưu trữ trong .bss. Nếu áp dụng cách 2, các giá trị ban đầu (1, 2, 3 và các số 0 còn
+lại) phải được Flash lưu trữ trước khi cắm điện, sau đó mới truyền qua cho vùng .data của SRAM khi
+chip được cấp nguồn.
